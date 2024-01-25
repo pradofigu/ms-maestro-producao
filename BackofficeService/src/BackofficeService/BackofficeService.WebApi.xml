@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BackofficeService</name>
+    </assembly>
+    <members>
+        <member name="M:BackofficeService.Controllers.v1.InvetoriesController.AddInvetory(BackofficeService.Domain.Invetories.Dtos.InvetoryForCreationDto)">
+            <summary>
+            Creates a new Invetory record.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Controllers.v1.InvetoriesController.GetInvetory(System.Guid)">
+            <summary>
+            Gets a single Invetory by ID.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Controllers.v1.InvetoriesController.GetInvetories(BackofficeService.Domain.Invetories.Dtos.InvetoryParametersDto)">
+            <summary>
+            Gets a list of all Invetories.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Controllers.v1.InvetoriesController.UpdateInvetory(System.Guid,BackofficeService.Domain.Invetories.Dtos.InvetoryForUpdateDto)">
+            <summary>
+            Updates an entire existing Invetory.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Controllers.v1.InvetoriesController.DeleteInvetory(System.Guid)">
+            <summary>
+            Deletes an existing Invetory record.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Databases.EntityConfigurations.InvetoryConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{BackofficeService.Domain.Invetories.Invetory})">
+            <summary>
+            The database configuration for Invetories. 
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Databases.EntityConfigurations.StockMovementConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{BackofficeService.Domain.StockMovements.StockMovement})">
+            <summary>
+            The database configuration for StockMovements. 
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.Line1">
+            <summary>
+            Address line 1 (e.g., street, PO Box, or company name).
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.Line2">
+            <summary>
+            Address line 2 (e.g., apartment, suite, unit, or building).
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.City">
+            <summary>
+            City, district, suburb, town, or village.
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.State">
+            <summary>
+            State, county, province, or region.
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.PostalCode">
+            <summary>
+            ZIP or postal code.
+            </summary>
+        </member>
+        <member name="P:BackofficeService.Domain.Addresses.Address.Country">
+            <summary>
+            Two-letter country code <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">(ISO 3166-1 alpha-2)</a>.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Extensions.Services.WebAppServiceConfiguration.AddBoundaryServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">
+            <summary>
+            Registers all services in the assembly of the given interface.
+            </summary>
+        </member>
+        <member name="T:BackofficeService.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
