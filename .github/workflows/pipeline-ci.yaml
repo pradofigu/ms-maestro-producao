@@ -83,5 +83,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.sonar-token-backoffice }}
         run: |
           ./.sonar/scanner/dotnet-sonarscanner begin /k:"pradofigu_ms-maestro-producao" /o:"pradofigu" /d:sonar.token="$SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml          
-          dotnet-coverage collect "dotnet test BackofficeService/tests/Backoffice.UnitTests/ --no-restore" -f xml -o "coverage.xml" 
+          dotnet-coverage collect "dotnet test BackofficeService/tests/BackofficeService.UnitTests/ --no-restore" -f xml -o "coverage.xml" 
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="$SONAR_TOKEN"
