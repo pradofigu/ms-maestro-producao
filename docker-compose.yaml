@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  app:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: maestro-backoffice
+    ports:
+      - "5003:8080"
+    depends_on:
+      - maestro-db
+      - maestro-message-broker
+    networks:
+      - maestro-backoffice-network
+      
+  maestro-db:
+    image: postgres
+    container_name: maestro-backoffice-postgres
+    restart: always
+    ports:
+      - '51124:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev_backofficeservice
+    volumes:
+      - maestro-backoffice-db-data:/var/lib/postgresql/data
+    networks:
+      - maestro-backoffice-network
+
+  maestro-message-broker:
+    image: masstransit/rabbitmq
+    container_name: maestro-backoffice-broker
+    restart: always
+    ports:
+      - '51123:15672' # RabbitMQ Management UI
+      - '51122:5672' # RabbitMQ Broker
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - maestro-backoffice-network
+
+  maestro-jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: maestro-backoffice-jaeger
+    ports:
+      - "51133:5775/udp"
+      - "51132:6831/udp"
+      - "51134:6832/udp"
+      - "51135:5778"
+      - "51136:16686"
+      - "51137:14250"
+      - "51138:14268"
+      - "51139:14269"
+      - "51140:9411"
+    networks:
+      - maestro-backoffice-network
+        
+volumes:
+  maestro-backoffice-db-data:
+    
+networks:
+  maestro-backoffice-network:
