@@ -2,7 +2,7 @@ namespace SharedKernel.Messages
 {
     using System;
 
-    public interface IOrderRefunded
+    public interface IOrderCanceled
     {
         public Guid CorrelationId { get; set; }
         public Guid OrderId { get; set; }
@@ -12,7 +12,7 @@ namespace SharedKernel.Messages
         public string DiscountCode { get; set; }
     }
 
-    public class OrderRefunded : IOrderRefunded
+    public class OrderCanceled : IOrderCanceled
     {
         public Guid CorrelationId { get; set; }
         public Guid OrderId { get; set; }
