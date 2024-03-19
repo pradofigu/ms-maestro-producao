@@ -4,6 +4,16 @@
         <name>BackofficeService</name>
     </assembly>
     <members>
+        <member name="M:BackofficeService.Controllers.v1.DeliveriesController.GetDelivery(System.Guid)">
+            <summary>
+            Gets a single Delivery by ID.
+            </summary>
+        </member>
+        <member name="M:BackofficeService.Controllers.v1.DeliveriesController.UpdateDelivery(System.Guid,BackofficeService.Domain.Deliveries.Dtos.DeliveryForUpdateDto)">
+            <summary>
+            Updates an entire existing Delivery.
+            </summary>
+        </member>
         <member name="M:BackofficeService.Controllers.v1.InvetoriesController.AddInvetory(BackofficeService.Domain.Invetories.Dtos.InvetoryForCreationDto)">
             <summary>
             Creates a new Invetory record.

@@ -10,7 +10,7 @@ using MediatR;
 [ApiController]
 [Route("api/invetories")]
 [ApiVersion("1.0")]
-public sealed class InvetoriesController(IMediator mediator) : ControllerBase
+public sealed class InvetoriesController(ISender mediator) : ControllerBase
 {
     /// <summary>
     /// Creates a new Invetory record.
@@ -78,8 +78,7 @@ public sealed class InvetoriesController(IMediator mediator) : ControllerBase
         await mediator.Send(command);
         return NoContent();
     }
-
-
+    
     /// <summary>
     /// Deletes an existing Invetory record.
     /// </summary>
