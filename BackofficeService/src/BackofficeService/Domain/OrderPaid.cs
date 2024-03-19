@@ -1,23 +1,39 @@
+using BackofficeService.Domain.Deliveries;
+using BackofficeService.Domain.Deliveries.Dtos;
+using BackofficeService.Domain.Deliveries.Mappings;
+using BackofficeService.Domain.Deliveries.Services;
+using BackofficeService.Services;
+
 namespace BackofficeService.Domain;
 
 using MassTransit;
 using SharedKernel.Messages;
 using System.Threading.Tasks;
-using BackofficeService.Databases;
 
 public sealed class OrderPaid : IConsumer<IOrderPaid>
 {
-    private readonly BackofficeDbContext _db;
-
-    public OrderPaid(BackofficeDbContext db)
+    private readonly IDeliveryRepository _deliveryRepository;
+    private readonly IUnitOfWork _unitOfWork;
+    
+    public OrderPaid(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork)
     {
-        _db = db;
+        _deliveryRepository = deliveryRepository;
+        _unitOfWork = unitOfWork;
     }
 
-    public Task Consume(ConsumeContext<IOrderPaid> context)
+    public async Task Consume(ConsumeContext<IOrderPaid> context)
     {
-        // do work here
+        var request = new DeliveryForCreationDto
+        {
+            CorrelationId = context.Message.CorrelationId,
+            Number = context.Message.Number,
+            Status = context.Message.Status
+        };
 
-        return Task.CompletedTask;
+        var deliveryToAdd = request.ToDeliveryForCreation();
+        var delivery = Delivery.Create(deliveryToAdd);
+
+        await _deliveryRepository.Add(delivery);
+        await _unitOfWork.CommitChanges();
     }
 }
