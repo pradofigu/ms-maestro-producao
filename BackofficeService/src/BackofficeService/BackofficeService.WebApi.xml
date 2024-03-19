@@ -29,6 +29,11 @@
             Deletes an existing Invetory record.
             </summary>
         </member>
+        <member name="M:BackofficeService.Databases.EntityConfigurations.DeliveryConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{BackofficeService.Domain.Deliveries.Delivery})">
+            <summary>
+            The database configuration for Deliveries. 
+            </summary>
+        </member>
         <member name="M:BackofficeService.Databases.EntityConfigurations.InvetoryConfiguration.Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{BackofficeService.Domain.Invetories.Invetory})">
             <summary>
             The database configuration for Invetories. 
@@ -84,6 +89,18 @@
             <inheritdoc />
         </member>
         <member name="M:BackofficeService.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:BackofficeService.Migrations.AddDeliveryEntity">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.AddDeliveryEntity.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.AddDeliveryEntity.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:BackofficeService.Migrations.AddDeliveryEntity.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
