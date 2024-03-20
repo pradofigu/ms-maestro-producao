@@ -3,12 +3,10 @@ using BackofficeService.Domain.Deliveries.Dtos;
 using BackofficeService.Domain.Deliveries.Mappings;
 using BackofficeService.Domain.Deliveries.Services;
 using BackofficeService.Services;
-
-namespace BackofficeService.Domain;
-
 using MassTransit;
 using SharedKernel.Messages;
-using System.Threading.Tasks;
+
+namespace BackofficeService.Domain;
 
 public sealed class OrderPaid : IConsumer<IOrderPaid>
 {

@@ -15,11 +15,13 @@ public static class UpdateDelivery
     {
         private readonly IDeliveryRepository _deliveryRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ISender _mediator;
 
-        public Handler(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork)
+        public Handler(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork, ISender mediator)
         {
             _deliveryRepository = deliveryRepository;
             _unitOfWork = unitOfWork;
+            _mediator = mediator;
         }
 
         public async Task Handle(Command request, CancellationToken cancellationToken)
@@ -30,6 +32,9 @@ public static class UpdateDelivery
 
             _deliveryRepository.Update(deliveryToUpdate);
             await _unitOfWork.CommitChanges(cancellationToken);
+            
+            var command = new OrderCompleted.OrderCompletedCommand(deliveryToUpdate);
+            await _mediator.Send(command, cancellationToken);
         }
     }
 }
