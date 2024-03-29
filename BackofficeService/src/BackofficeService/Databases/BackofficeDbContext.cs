@@ -7,6 +7,7 @@ using Configurations;
 using MediatR;
 using BackofficeService.Domain.Invetories;
 using BackofficeService.Domain.StockMovements;
+using BackofficeService.Domain.Deliveries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq.Expressions;
@@ -29,6 +30,7 @@ public sealed class BackofficeDbContext : DbContext
     }
 
     #region DbSet Region - Do Not Delete
+    public DbSet<Delivery> Deliveries { get; set; }
     public DbSet<Invetory> Invetories { get; set; }
     public DbSet<StockMovement> StockMovements { get; set; }
     #endregion DbSet Region - Do Not Delete
@@ -43,6 +45,7 @@ public sealed class BackofficeDbContext : DbContext
         */
 
         #region Entity Database Config Region - Only delete if you don't want to automatically add configurations
+        modelBuilder.ApplyConfiguration(new DeliveryConfiguration());
         modelBuilder.ApplyConfiguration(new InvetoryConfiguration());
         modelBuilder.ApplyConfiguration(new StockMovementConfiguration());
         #endregion Entity Database Config Region - Only delete if you don't want to automatically add configurations

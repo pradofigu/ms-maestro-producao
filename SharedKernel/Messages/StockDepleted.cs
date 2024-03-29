@@ -1,7 +1,6 @@
 namespace SharedKernel.Messages
 {
     using System;
-    using System.Text;
 
     public interface IStockDepleted
     {

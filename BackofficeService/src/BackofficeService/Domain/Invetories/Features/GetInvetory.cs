@@ -2,7 +2,6 @@ namespace BackofficeService.Domain.Invetories.Features;
 
 using BackofficeService.Domain.Invetories.Dtos;
 using BackofficeService.Domain.Invetories.Services;
-using BackofficeService.Exceptions;
 using Mappings;
 using MediatR;
 

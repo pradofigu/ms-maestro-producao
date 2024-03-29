@@ -1,4 +1,4 @@
-using BackofficeService.Domain.Deliveries;
+﻿using BackofficeService.Domain.Deliveries;
 using BackofficeService.Domain.Deliveries.Dtos;
 using BackofficeService.Domain.Deliveries.Mappings;
 using BackofficeService.Domain.Deliveries.Services;
@@ -8,18 +8,18 @@ using SharedKernel.Messages;
 
 namespace BackofficeService.Domain;
 
-public sealed class OrderPaid : IConsumer<IOrderPaid>
+public sealed class OrderCanceled : IConsumer<IOrderCanceled>
 {
     private readonly IDeliveryRepository _deliveryRepository;
     private readonly IUnitOfWork _unitOfWork;
-    
-    public OrderPaid(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork)
+
+    public OrderCanceled(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork)
     {
         _deliveryRepository = deliveryRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task Consume(ConsumeContext<IOrderPaid> context)
+    public async Task Consume(ConsumeContext<IOrderCanceled> context)
     {
         var request = new DeliveryForCreationDto
         {
