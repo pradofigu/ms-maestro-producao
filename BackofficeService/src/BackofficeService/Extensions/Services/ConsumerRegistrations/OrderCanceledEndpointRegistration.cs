@@ -1,14 +1,14 @@
+﻿using BackofficeService.Domain;
 using MassTransit;
 using RabbitMQ.Client;
-using BackofficeService.Domain;
 
 namespace BackofficeService.Extensions.Services.ConsumerRegistrations;
 
-public static class OrderPaidEndpointRegistration
+public static class OrderCanceledEndpointRegistration
 {
-    public static void OrderPaidEndpoint(this IRabbitMqBusFactoryConfigurator cfg, IBusRegistrationContext context)
+    public static void OrderCanceledEndpoint(this IRabbitMqBusFactoryConfigurator cfg, IBusRegistrationContext context)
     {
-        cfg.ReceiveEndpoint("order-paid-queue", re =>
+        cfg.ReceiveEndpoint("order-canceled-queue", re =>
         {
             // turns off default fanout settings
             re.ConfigureConsumeTopology = false;
@@ -21,10 +21,10 @@ public static class OrderPaidEndpointRegistration
             re.SetQueueArgument("declare", "lazy");
 
             // the consumers that are subscribed to the endpoint
-            re.ConfigureConsumer<OrderPaid>(context);
+            re.ConfigureConsumer<OrderCanceled>(context);
 
             // the binding of the intermediary exchange and the primary exchange
-            re.Bind("order-paid", e =>
+            re.Bind("order-canceled", e =>
             {
                 e.ExchangeType = ExchangeType.Fanout;
             });

@@ -1,23 +1,39 @@
+using BackofficeService.Domain.Deliveries;
+using BackofficeService.Domain.Deliveries.Dtos;
+using BackofficeService.Domain.Deliveries.Mappings;
+using BackofficeService.Domain.Deliveries.Services;
+using BackofficeService.Services;
+
 namespace BackofficeService.Domain;
 
 using MassTransit;
 using SharedKernel.Messages;
 using System.Threading.Tasks;
-using BackofficeService.Databases;
 
 public sealed class OrderRefunded : IConsumer<IOrderRefunded>
 {
-    private readonly BackofficeDbContext _db;
+    private readonly IDeliveryRepository _deliveryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public OrderRefunded(BackofficeDbContext db)
+    public OrderRefunded(IDeliveryRepository deliveryRepository, IUnitOfWork unitOfWork)
     {
-        _db = db;
+        _deliveryRepository = deliveryRepository;
+        _unitOfWork = unitOfWork;
     }
 
-    public Task Consume(ConsumeContext<IOrderRefunded> context)
+    public async Task Consume(ConsumeContext<IOrderRefunded> context)
     {
-        // do work here
-
-        return Task.CompletedTask;
+        // var request = new DeliveryForCreationDto
+        // {
+        //     CorrelationId = context.Message.CorrelationId,
+        //     Number = context.Message.Number,
+        //     Status = "Cancelado"
+        // };
+        //
+        // var deliveryToAdd = request.ToDeliveryForCreation();
+        // var delivery = Delivery.Create(deliveryToAdd);
+        //
+        // await _deliveryRepository.Add(delivery);
+        // await _unitOfWork.CommitChanges();
     }
 }
